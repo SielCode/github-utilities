@@ -1,0 +1,22 @@
+name: Verify
+on:
+  workflow_call:
+    inputs:
+      apiRepositoryPath:
+        required: true
+        type: string
+        description: A Path to the root folder of API repository.
+
+jobs:
+  verify:
+    runs-on: ubuntu_latest
+    steps:
+      - name: Verify existance of spec folder
+        shell: bash
+        run: |
+          if [ -d "${{ inputs.path }}" ]; then
+            echo "Directory ${{ inputs.path }} exists."
+          else
+            echo "Directory ${{ inputs.path }} does not exist."
+            exit 1
+          fi
