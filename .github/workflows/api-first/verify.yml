@@ -14,10 +14,10 @@ jobs:
       - name: Verify existance of spec folder
         shell: bash
         run: |
-          echo ${{ apiRepositoryPath }}
-          if [ -d "${{ inputs.path }}" ]; then
-            echo "Directory ${{ inputs.path }} exists."
+          echo ${{ inputs.apiRepositoryPath }}
+          if [ -d "${{ inputs.apiRepositoryPath }}" ]; then
+            echo "Directory ${{ inputs.apiRepositoryPath }} exists."
           else
-            echo "Directory ${{ inputs.path }} does not exist."
+            echo "Directory ${{ inputs.apiRepositoryPath }} does not exist."
             exit 1
           fi
