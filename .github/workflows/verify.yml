@@ -9,7 +9,7 @@ on:
 
 jobs:
   verify:
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
     steps:
       - name: Verify existance of spec folder
         shell: bash
