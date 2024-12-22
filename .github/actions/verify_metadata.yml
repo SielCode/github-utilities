@@ -1,0 +1,10 @@
+name: verify action
+runs:
+  using: composite
+  steps:
+    - name: first step
+      shell: bash
+      run: echo "STEP 1"
+    - name: second step
+      shell: bash
+      run: echo "STEP 2"
