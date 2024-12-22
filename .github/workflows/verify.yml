@@ -1,21 +1,24 @@
 name: Verify
 on:
   workflow_call:
-    inputs:
-      apiRepositoryPath:
-        required: true
-        type: string
-        description: A Path to the root folder of API repository.
 
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.repository.full_name }}  # Checkout the repository of the caller
+          ref: ${{ github.sha }}  # Checkout the commit hash or branch name passed from the caller
+      - name: print
+        shell: bash
+        run: echo $(pwd)
       - name: Verify existance of spec folder
         shell: bash
         run: |
           echo ${{ inputs.apiRepositoryPath }}
-          if [ -d "${{ inputs.apiRepositoryPath }}" ]; then
+          if [ -d "./spec" ]; then
             echo "Directory ${{ inputs.apiRepositoryPath }} exists."
           else
             echo "Directory ${{ inputs.apiRepositoryPath }} does not exist."
