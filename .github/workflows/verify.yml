@@ -11,15 +11,22 @@ jobs:
           echo "Executing API verification workflow for:"
           echo "Repository: ${{ github.event.repository.full_name }}"
           echo "Commit: ${{ github.sha }}"
-      - name: Checkout
+      - name: Checkout API repository
         uses: actions/checkout@v3
         with:
           repository: ${{ github.event.repository.full_name }}
           ref: ${{ github.sha }}
+          path: ./apiRepository
+      - name: Checkout utilities repository
+        uses: actions/checkout@v3
+        with:
+          repository: SielCode/github-utilities
+          ref: api_related_metadata_file_validation
+          path: ./utilitiesRepository
       - name: Verify existence of metadata yaml spec
         shell: bash
         run: |
-          if [ -e "./spec/metadata.yml" ]; then
+          if [ -e "./apiRepository/spec/metadata.yml" ]; then
             echo "Metadata yaml file exists."
           else
             echo "Metadata yaml file does not exist."
