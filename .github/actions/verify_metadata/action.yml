@@ -1,10 +1,19 @@
-name: verify action
+name: Metadata yaml file data extractor
 runs:
   using: composite
   steps:
-    - name: first step
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+    - name: Install dependencies
       shell: bash
-      run: echo "STEP 1"
-    - name: second step
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./github/scripts/api_generator/metadata/requirements.txt
+    - name: Check metadata yaml file schema
       shell: bash
-      run: echo "STEP 2"
+      run: |
+        python ./github/scripts/api_generator/metadata/verify_metadata.py \
+          --metadata ./spec/metadata.yml \ 
+          --schema ./github/scripts/api_generator/metadata/schema.yml

@@ -1,0 +1,12 @@
+version:
+    type: string
+    required: true
+    regex: '^\d+\.\d+\.\d+$'
+type:
+    type: string
+    required: true
+    allowed:
+        - rest
+path:
+    type: string
+    required: true

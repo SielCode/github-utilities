@@ -1,26 +1,29 @@
 name: Verify
 on:
   workflow_call:
-
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
+      - name: Info
+        shell: bash
+        run: |
+          echo "Executing API verification workflow for:"
+          echo "Repository: ${{ github.event.repository.full_name }}"
+          echo "Commit: ${{ github.sha }}"
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: ${{ github.event.repository.full_name }}  # Checkout the repository of the caller
-          ref: ${{ github.sha }}  # Checkout the commit hash or branch name passed from the caller
-      - name: print
-        shell: bash
-        run: echo $(pwd)
-      - name: Verify existance of spec folder
+          repository: ${{ github.event.repository.full_name }}
+          ref: ${{ github.sha }}
+      - name: Verify existence of metadata yaml spec
         shell: bash
         run: |
-          echo ${{ inputs.apiRepositoryPath }}
-          if [ -d "./spec" ]; then
-            echo "Directory ${{ inputs.apiRepositoryPath }} exists."
+          if [ -e "./spec/metadata.yml" ]; then
+            echo "Metadata yaml file exists."
           else
-            echo "Directory ${{ inputs.apiRepositoryPath }} does not exist."
+            echo "Metadata yaml file does not exist."
             exit 1
           fi
+      - name: Extract data from metadata yaml file
+        uses: ./github/actions/verify_metadata
