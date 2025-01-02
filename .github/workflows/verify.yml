@@ -26,4 +26,4 @@ jobs:
             exit 1
           fi
       - name: Verify metadata yaml file
-        uses: github-utilities/.github/actions/verify_metadata
+        uses: ./.github/actions/verify_metadata
