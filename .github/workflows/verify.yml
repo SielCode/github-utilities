@@ -25,5 +25,5 @@ jobs:
             echo "Metadata yaml file does not exist."
             exit 1
           fi
-      - name: Extract data from metadata yaml file
-        uses: ./github/actions/verify_metadata
+      - name: Verify metadata yaml file
+        uses: SielCode/github-utilities/.github/actions/verify_metadata
