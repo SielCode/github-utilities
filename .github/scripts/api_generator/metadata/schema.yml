@@ -2,7 +2,7 @@ version:
     type: string
     required: true
     regex: '^\d+\.\d+\.\d+$'
-type:
+kind:
     type: string
     required: true
     allowed:
