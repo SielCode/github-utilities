@@ -15,5 +15,5 @@ runs:
       shell: bash
       run: |
         python ./utilitiesRepository/.github/scripts/api_generator/metadata/verify_metadata.py \
-          --metadata ./apiRepository/spec/metadata.yml \ 
+          --metadata ./apiRepository/spec/metadata.yml \
           --schema ./utilitiesRepository/.github/scripts/api_generator/metadata/schema.yml
